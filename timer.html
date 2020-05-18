@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+     
+      var hh = parseInt(prompt("hour"))
+      var mm = parseFloat(prompt("minute"))
+      var ss = parseFloat(prompt('second'))
+      
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =
+        h + ":" + m + ":" + s;
+            timeNow=h*60*60+m*60+s
+            console.log(timeNow)
+        var t = setTimeout(startTime, 500);
+       
+        var timeAlarm = hh*60*60 + mm*60 + ss;
+          console.log(timeAlarm)
+        document.getElementById('stp').innerHTML =  hh + ":" + mm + ":" + ss;             //hh*60*60 + mm*60 + ss;
+        
+        if(timeNow==timeAlarm){
+          alert("time is over")
+          //document.getElementById(AudioTrack)
+          }
+        }
+
+      function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+      }
+      
+</script>
+</head>
+
+<body  onload="startTime()" >
+    <div id = 'dizayn1' style="background-color: rgb(202, 216, 182); 
+    border-style:solid; border:2px">
+
+      <div id="txt" style="text-align: center; font-size: 30px; 
+      width: 150px; height: 100px; background:rgb(171, 196, 219); 
+      margin:100px auto; padding: 30px 10px 20px 10px; "></div>
+    </div>
+    
+    <div style="background-color: rgb(202, 216, 182); 
+    border-style:solid; border:2px"> 
+
+      <div id="stp" style="text-align: center; font-size: 30px; 
+    width: 150px; height: 100px; background:rgb(171, 196, 219); 
+    margin:20px auto; padding: 30px 10px 20px 10px; ">
+  
+   </div> 
+    </div>
+    <audio id="myAudio" controls>
+      <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    
+    <p id="demo"></p>
+  
+    
+</body>
+</html>
