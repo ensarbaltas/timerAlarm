@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" src="style.css" type="text">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body style="background-color:rgb(196, 208, 240);">
+
+    <div id="value" >
+
+      <p style="margin: 20px 50px 20px 20px; text-align:center; ">Chose your alarm time;</p>
+
+      <p id="hourPar" style="margin: 20px 50px 20px 20px; text-align:center; ">hour <input id="hourInp" value="0" type="number" max="24" min="0" ></p>
+  
+      <p id="minutePar" style="margin: 20px 63px 20px 20px; text-align:center">minute <input id="minuteInp" value="0" type="number" max="60" min="0" ></p>
+  
+      <p id="secondPar" style="margin: 20px 65px 20px 20px; text-align:center">second <input id="secondInp" value="0" type="number" max="60" min="10" ></p> 
+      
+      <p  style="margin: 20px 20px 20px 20px; text-align:center" >  <button  type="button" onclick="startTime()">Submit</button> </p> 
+     
+
+    </div>
+  
+      <div id = 'dizayn1' style="border-style:solid; border:2px">
+
+          <P style="margin: 10px 50px 10px 20px; text-align:center; ">Reel Time : </P>
+          <div id="txt"  style="text-align: center; font-size: 30px; 
+          width: 150px; height: 70px; background:rgb(171, 196, 219); 
+          margin:10px auto; padding: 10px 10px 20px 10px; "></div>
+        
+          <P style="margin: 10px 50px 10px 20px; text-align:center; ">Your time : </P>
+        <div id="stp" style="text-align: center; font-size: 30px; 
+        width: 150px; height: 70px; background:rgb(171, 196, 219); 
+        margin:10px auto; padding: 10px 10px 20px 10px; "></div>
+        </div> 
+  
+         <audio id="buzzer" src="music.mp3" type="audio/mp3"> 
+        </audio>
+   
+        <img src="th.jpeg" style= "margin: 20px 10px 20px 10px; width: 70px; height: 50px;">
+    
+
+</body>
+<script>
+
+   $(document).ready(function(){
+
+    function startTime() {
+
+            var hour;
+            var minute;
+            var second; 
+            var timeAlarm
+            hour = document.getElementById("hourInp").value;
+            minute = document.getElementById("minuteInp").value;
+            second = document.getElementById("secondInp").value;
+
+            minute = checkTime(minute)
+            second = checkTime(second)
+
+            function checkTime(j) {
+              if (j < 10) {j = "0" + j};  // add zero in front of numbers < 10
+              return j;
+          } 
+
+            document.getElementById('stp').innerHTML = hour + ":" + minute + ":" +second;
+            
+            var timeAlarm =parseInt(hour)*60*60 +parseInt(minute)*60 + parseInt(second) ;
+            console.log(timeAlarm)
+            
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+        
+            document.getElementById('txt').innerHTML =
+            h + ":" + m + ":" + s;
+        
+            timeNow=h*60*60+m*60+s
+            var t = setTimeout(startTime, 1000);
+            
+            function checkTime(i) {
+                if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                return i;
+            } 
+    
+            console.log(timeAlarm, "timeAlarm")
+    
+            if(timeNow==timeAlarm){
+                document.getElementById("buzzer"); 
+                buzzer.play(0.1);
+
+                $("img").animate({
+                  right: '100px',
+                  opacity: '0.5',
+                  height: '150px',
+                  width: '120px',
+                });
+              
+            } 
+
+            
+
+    }
+    startTime()
+          
+    
+      
+       
+      });
+  
+
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
